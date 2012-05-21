@@ -1,0 +1,16 @@
+syntax:glob
+bin/*
+obj/*
+*.log
+*.user
+*.suo
+*.pdb
+*.resources
+*.tlog
+*.trx
+Thumbs.db
+*.docstates
+_ReSharper.*
+packages/*
+!packages/repositories.config
+TestResults/*
