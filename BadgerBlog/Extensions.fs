@@ -12,7 +12,7 @@ module BadgerBlog.Extensions
         static member AsBeginEndHandlers(computation) =
             let start, finish, _ = Async.AsBeginEnd(computation)
             let bh = BeginEventHandler(fun sender e cb data -> start(sender, cb, data))
-            let eh = EndEventHandler(fun iar -> finish(iar) |> ignore)
+            let eh = EndEventHandler(finish >> ignore)
             bh, eh
 
     type String with

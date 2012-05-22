@@ -658,10 +658,5 @@ module MarkdownResolver =
         with _ ->
             sprintf "<pre>%s</pre>" (HttpUtility.HtmlEncode content)
 
-    let Resolve inputBody =
-        let html = 
-            inputBody
-            |> FormatMarkdown
-            |> SanitizeHtml.Sanitize
-
-        MvcHtmlString.Create html
+    let Resolve =
+        FormatMarkdown >> SanitizeHtml.Sanitize >> MvcHtmlString.Create
