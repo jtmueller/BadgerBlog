@@ -606,7 +606,7 @@ module SanitizeHtml =
     open System.Text
     open System.Text.RegularExpressions
 
-    let private tags = Regex("<[^>]*(>|$)",
+    let private tags = Regex("<[^><]*(>|$)",
                              RegexOptions.Singleline ||| RegexOptions.ExplicitCapture |||
                              RegexOptions.Compiled)
     let private whiteList = 

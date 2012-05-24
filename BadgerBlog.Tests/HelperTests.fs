@@ -13,6 +13,8 @@ module ``SlugConverter Tests`` =
     let ``Replaces spaces with dashes`` () =
         Assert.Equal<string>("ef-prof", conv "EF Prof")
 
+// References:
+// http://refactormycode.com/codes/333-sanitize-html
 module ``MarkdownResolver Tests`` =
     let markdown = MarkdownResolver.Resolve >> string
 
@@ -77,11 +79,12 @@ module ``MarkdownResolver Tests`` =
 
     [<Fact>]
     let ``Do not sanitize the less-than symbol when it's not part of a tag`` () =
-        let input = "<pre>string s = \"\"; \n\
-                     for (int i = 0; i < 13000; i++) \n\
-                     { \n\
-	                     s += (char) i; \n\
-                     }</pre>"
+        let input = @"
+<pre>string s = """";
+for (int i = 0; i < 13000; i++)
+{
+	s += (char) i;
+}</pre>"
         let result = markdown input
         Assert.Contains("for (int i = 0; i < 13000; i++)", result)
 
